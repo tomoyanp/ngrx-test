@@ -1,0 +1,41 @@
+<div class="header">
+    <span class="title">{{ selectYear }}年</span>
+    <span (click)="changeMonth(selectMonth - 1)"><</span>
+    <span>{{ selectMonth + 1 }}月</span>
+    <span (click)="changeMonth(selectMonth + 1)">></span>
+
+</div>
+<table>
+    <tr>
+        <th>
+            日
+        </th>
+        <th>
+           月 
+        </th>
+        <th>
+           火 
+        </th>
+        <th>
+           水 
+        </th>
+        <th>
+           木 
+        </th>
+        <th>
+           金 
+        </th>
+        <th>
+           土 
+        </th>
+    </tr>
+    <tr *ngFor="let line of showCalendar">
+        <td *ngFor="let cell of line" [class]="cell.class" (click)="selectDate(cell.year, cell.month, cell.date)">
+            <span class="cell">{{ cell.date }}</span>
+        </td>
+    </tr>
+</table>
+
+
+<input type="text" [ngModel]="selectFrom | date: 'y/MM/dd'" (ngModelChange)="setDate($event.target.value, 'from')" readonly>
+<input type="text" [ngModel]="selectTo | date: 'y/MM/dd'" (ngModelChange)="setDate($event, 'to')" readonly>

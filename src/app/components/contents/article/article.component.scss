@@ -1,0 +1,23 @@
+.summary {
+    padding-left: 5px;
+    border-left: solid 5px rgb(0, 49, 156);
+}
+
+.paragraph {
+    margin: 20px 10px 20px 10px;
+}
+
+.sub-title {
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+
+.sub-title::before {
+    color: rgb(0, 49, 156);
+    font-weight: bold;
+    content: '#';
+}
+
+.sentence {
+    font-size: 14px;
+}

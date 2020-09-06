@@ -1,0 +1,19 @@
+<div class="flowchart-container">
+    <ng-container *ngFor="let item of element">
+        <div [class]="item.class">
+            <div [class]="item.class">
+                {{ item.content }}
+            </div>
+            <div [class]="item.class">
+                {{ item.content }}
+            </div>
+        </div>
+        <ng-container *ngIf="item.arrow">
+            <div class="arrow-container">
+                <div [class]="item.rightArrow"></div>
+                <div [class]="item.leftArrow"></div>
+                <span class="arrow-label">ステータスキャンセル</span>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

@@ -1,0 +1,42 @@
+<ng-template #error>
+    <!--<mat-error *ngIf="formControl.errors?.required">-->
+    <mat-error>
+        Error occured!
+    </mat-error>
+</ng-template>
+
+<form [formGroup]="formGroup">
+    <mat-form-field floatLabel="always" apperance="fill">
+        <mat-label>test</mat-label>
+        <!--<input matInput formControlName="inputForm" [value]="formGroup.get('inputForm').value" placeholder="12345">-->
+        <input matInput 
+        [value]="'aaaa'"
+        [formControl]="formGroup.get('inputForm')"
+        placeholder="12345"
+        (focus)="unformatValue(formGroup.get('inputForm'))"
+        (focusout)="formatValue(formGroup.get('inputForm'))"
+        (ngModelChange)="checkChange()">
+        <mat-error>{{ getMessage(formGroup.get('inputForm'))}}</mat-error>
+    </mat-form-field>
+    <div>
+    <ng-container *ngFor="let checkbox of formGroup['controls']['checkbox']['controls']; let index = index;">
+        <input type="checkbox" [formControl]="checkbox">{{ testCheckboxList[index] }}
+    </ng-container>
+    </div>
+    <div>
+    <select formControlName="pulldown" placeholder="Choose!">
+        <option *ngFor="let item of testPullDownList">{{ item }}</option>
+    </select>
+    </div>
+
+    <div>
+        <button (click)="submit()">submit</button>
+    </div>
+</form>
+
+
+    <mat-form-field appearance="fill"
+        floatLabel="always">
+        <mat-label>test</mat-label>
+      <input matInput placeholder="Simple placeholder" required>
+    </mat-form-field>

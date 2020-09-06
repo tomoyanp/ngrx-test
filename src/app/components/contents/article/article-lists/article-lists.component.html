@@ -1,0 +1,16 @@
+<div class="contents card" *ngFor="let key of articlesList">
+    <div class="header">
+        <span class="title">
+            {{ articles[key]["title"] }}
+        </span>
+        <span class="date">
+            {{ articles[key]["date"]}}
+        </span>
+    </div>
+    <div class="summary">
+        {{ articles[key]["summary"] }}
+    </div>
+    <div class="footer">
+        <a class="detail" routerLink="/article/{{key}}">続きを読む</a>
+    </div>
+</div>

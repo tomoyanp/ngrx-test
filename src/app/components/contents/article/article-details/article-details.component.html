@@ -1,0 +1,38 @@
+<div class="card contents" *ngIf="selectedArticle != undefined">
+    <div class="main-title">
+        {{ selectedArticle["title"] }}
+    </div>
+
+    <div class="paragraph summary">
+        {{ selectedArticle["summary"] }}
+    </div>
+    <ng-container *ngFor="let pg of selectedArticle['paragraph']">
+        <div class="paragraph">
+            <ng-container *ngFor="let contents of pg">
+                <div [class]="contents.class" *ngIf="contents.elem == 'div'">
+                    <ng-container *ngFor="let text of contents.texts">
+                        {{ text }}<br>
+                    </ng-container>
+                </div>
+                <span [class]="contents.class" *ngIf="contents.elem == 'span'">
+                    <ng-container *ngFor="let text of contents.texts">
+                        {{ text }}<br>
+                    </ng-container>
+                </span>
+                <img [class]="contents.class" *ngIf="contents.elem == 'img'">
+            </ng-container>
+        </div>
+    </ng-container>
+    <div id="vibrant-ink" class="theme__preview">
+    <pre>
+        <code class="prettyprint linenums lang-python">
+# coding: utf-8
+import os
+if __name__ == "__main__":
+    print("hogehoge")
+
+        </code>
+    </pre>
+    </div>
+
+</div>

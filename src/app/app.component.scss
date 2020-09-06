@@ -1,0 +1,41 @@
+#contents {
+    width: 100%;
+    height: calc(100% - 50px);
+    margin-top: 50px;
+    display: flex;
+}
+
+#main-contents {
+    width: 70%;
+}
+
+#sub-contents {
+    width: 20%;
+}
+
+#sidenav-button {
+    position: fixed;
+    right: 0;
+    top: 50%;
+}
+
+.contents-layout {
+    display: flex;
+}
+
+.icon {
+    justify-content: flex-end;
+}
+
+mat-sidenav-container {
+    width: 100%;
+}
+
+mat-sidenav-content {
+    width: 70%;
+    overflow: hidden;
+}
+
+mat-sidenav {
+    width: 30%;
+}
