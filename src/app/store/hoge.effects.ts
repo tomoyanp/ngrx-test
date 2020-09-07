@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect, act } from '@ngrx/effects';
-import { of, interval } from 'rxjs';
+import { of, interval, Observable } from 'rxjs';
 import { map, startWith, mergeMap, concatMap, switchMap, catchError } from 'rxjs/operators';
 import { load, loadDone, polling, pollingDone } from './hoge.action';
 
@@ -18,7 +18,12 @@ export class HogeEffects {
         ofType(load),
         switchMap(() =>
           this.hogeService.load().pipe(
-            map(result => loadDone({ loadObject: result }))
+            map(result => loadDone({ loadObject: result })),
+            catchError((error) => {
+              return of(loadDone({
+                loadObject: { error }
+              }));
+            })
           )
         )
       )
@@ -31,7 +36,7 @@ export class HogeEffects {
             startWith(0),
             switchMap(() =>
               this.hogeService.load().pipe(
-                map(result => pollingDone({ pollingObject: result }))
+                map(result => pollingDone({ pollingObject: result })),
               )
             )
           );

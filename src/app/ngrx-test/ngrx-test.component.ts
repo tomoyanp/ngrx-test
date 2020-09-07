@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { load as loadHoge, polling as pollingHoge } from '../store/hoge.action';
+import { ApiResponse } from './api-response';
 import { Observable } from 'rxjs';
 
 import { loadState, pollingState } from '../store/hoge.selector';
@@ -22,12 +23,30 @@ export class NgrxTestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadState$.subscribe(item => {
-      console.log('load');
-      console.log(item);
+    try {
+      this._loadApi();
+      // this._hoge();
+      // const tmp = null;
+      // tmp[0] = 'hogehoge';
+    } catch (e) {
+      console.log('catch error outer');
+      console.log(e);
+    }
+
+  }
+
+  private _loadApi() {
+    this.loadState$.subscribe((item: ApiResponse) => {
       if (item.processingStatus === 'loadDone') {
-        this.hogeStore.dispatch(loadHoge());
+        const tmp = null;
+        tmp[0] = 'hogehoge';
+        // console.log('API Error');
+        // console.log(item);
       }
+    },
+    error => {
+      console.log('catch error inner');
+      console.log(error);
     });
 
     this.pollingState$.subscribe(item => {
@@ -41,5 +60,10 @@ export class NgrxTestComponent implements OnInit {
   private _sleep(waitMsec) {
     const startMsec = new Date().getTime();
     while (new Date().getTime() - startMsec < waitMsec) {}
+  }
+
+  private _hoge() {
+    const tmp = null;
+    tmp[0] = 'hogehoge';
   }
 }
